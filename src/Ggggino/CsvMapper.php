@@ -14,6 +14,10 @@ class CsvMapper {
     $this->getCsv();
   }
 
+  /**
+  *   Get the csv
+  *
+  **/
   public function getCsv(){
     $header = NULL;
     if (($handle = fopen($this->url, 'r')) !== FALSE)
@@ -51,4 +55,23 @@ class CsvMapper {
     return $this->csv;
   }
 
+  /**
+  *   Select Distinct values for column $nomeHeader
+  *
+  **/
+  public function selDistinctHead($nomeHeader){
+    $ris[0] = $this->csv[0];
+    foreach( $this->csv as $key => $value ){
+      $match = false;
+      foreach( $ris as $key2 => $value2 ){
+        if($value2[$nomeHeader] == $value[$nomeHeader]){
+          $match = true;
+        }
+      }
+      if(!$match){
+       $ris[$key] = $value;
+      }
+    }
+    return $ris;
+  }
 } 
