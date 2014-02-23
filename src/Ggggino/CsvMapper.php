@@ -1,5 +1,5 @@
 <?php 
-namespace src;
+namespace Ggggino;
 class CsvMapper { 
 
   private $url;

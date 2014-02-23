@@ -1,7 +1,7 @@
 <?php
- 
-require "src/CsvMapper.php";
-use src\CsvMapper;
+require 'vendor/autoload.php';
+
+use Ggggino\CsvMapper;
 
 $obj = new CsvMapper("example/sample2.csv");
 
