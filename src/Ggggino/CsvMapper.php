@@ -4,6 +4,7 @@ class CsvMapper {
 
   private $url;
   private $separatore;
+  private $header;
   private $csv = array();
 
   public function __construct($url, $separatore = ","){
@@ -19,15 +20,15 @@ class CsvMapper {
   *
   **/
   public function getCsv(){
-    $header = NULL;
+    $this->header = NULL;
     if (($handle = fopen($this->url, 'r')) !== FALSE)
     {
       while (($row = fgetcsv($handle, 1000, $this->separatore)) !== FALSE)
       {
-        if(!$header)
-          $header = $row;
+        if(!$this->header)
+          $this->header = $row;
         else
-          $this->csv[] = array_combine($header, $row);
+          $this->csv[] = array_combine($this->header, $row);
       }
       fclose($handle);
     }
@@ -73,5 +74,12 @@ class CsvMapper {
       }
     }
     return $ris;
+  }
+  /**
+  *  Get header
+  *  
+  */
+  public function getHeader(){
+    return $this->header;
   }
 } 

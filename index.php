@@ -6,6 +6,6 @@ use Ggggino\CsvMapper;
 $obj = new CsvMapper("example/sample2.csv");
 #print_r($obj->stampCsv());
 #print_r($obj->getBy("nome", 'David'));
-print_r($obj->selDistinctHead("nome"));
+#print_r($obj->getHeader());
 #var_dump($obj);
 ?>
