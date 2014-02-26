@@ -5,7 +5,7 @@ class CsvMapper {
   private $url;
   private $separatore;
   private $header;
-  private $csv = array();
+  private $csv;
 
   public function __construct($url, $separatore = ","){
     $this->url = $url;
@@ -21,6 +21,7 @@ class CsvMapper {
   **/
   public function getCsv(){
     $this->header = NULL;
+    $this->csv = array();
     if (($handle = fopen($this->url, 'r')) !== FALSE)
     {
       while (($row = fgetcsv($handle, 1000, $this->separatore)) !== FALSE)
