@@ -98,11 +98,12 @@ class CsvMapper {
   /*
   *  sortBy($header, $type)
   *  $header = name of the header to sort
-  *  $type = type of the sort
+  *  $type = type of the sort "ASC" || "DESC"
   *
   */
   public function sortBy($header, $type="ASC"){
     $arrayHeaders = array();
+    $sort = $type == "ASC" ? SORT_ASC : SORT_DESC;
     if(!in_array($header, $this->header)){
       echo "Inserire header corretto";
       return;
@@ -111,8 +112,7 @@ class CsvMapper {
       $arrayHeaders[$key] = $value[$header];
     }
     $csv = $this->csv;
-    print_r($csv);
-    array_multisort($arrayHeaders,SORT_STRING,$csv);
+    array_multisort($arrayHeaders,$sort,SORT_STRING,$csv);
     return $csv;
   }
 } 
