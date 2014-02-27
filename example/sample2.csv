@@ -1,8 +1,8 @@
-id,nome,cognome
-1,Pippo,Gino
-2,Ele,Ehh
-4,Ant,Yea
-5,Ele,Ehh
-6,Ant,Yea
-7,San,Germain
-8,Van,Lenz
+id,nome,cognome,altezza
+1,Pippo,Gino, 1.85
+2,Ele,Ehh, 1.20
+4,Ant,Yea, 1.36
+5,Ele,Ehh,1.25
+6,Ant,Yea, 1.59
+7,San,Germain, 1.87
+8,Van,Lenz, 

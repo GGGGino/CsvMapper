@@ -12,14 +12,14 @@ class CsvMapper {
     $this->separatore = $separatore;
     if(!file_exists($this->url) || !is_readable($this->url))
       return FALSE;
-    $this->getCsv();
+    $this->createCsv();
   }
 
-  /**
+  /*
   *   Get the csv
   *
-  **/
-  public function getCsv(){
+  */
+  public function createCsv(){
     $this->header = NULL;
     $this->csv = array();
     if (($handle = fopen($this->url, 'r')) !== FALSE)
@@ -27,18 +27,18 @@ class CsvMapper {
       while (($row = fgetcsv($handle, 1000, $this->separatore)) !== FALSE)
       {
         if(!$this->header)
-          $this->header = $row;
+          $this->header = $this->trimField($row);
         else
-          $this->csv[] = array_combine($this->header, $row);
+          $this->csv[] = array_combine($this->header, $this->trimField($row));
       }
       fclose($handle);
     }
   }
 
-  /**
+  /*
   *   Search by the name of the name's header
   *
-  **/
+  */
   public function getBy($nomeHeader, $cerca){
     $ris = array();
     foreach( $this->csv as $key => $value ){
@@ -49,18 +49,36 @@ class CsvMapper {
     return $ris;
   }
 
-  /**
+  /*
   *   Stamp Csv
   *
   */
-  public function stampCsv(){
+  public function getCsv(){
     return $this->csv;
   }
 
-  /**
+  /*
+  *  
+  *
+  */
+  public function trimField($row){
+    foreach($row as &$value)
+      $value = trim($value);
+    return $row;
+  }
+
+  /*
+  *  Get header
+  *  
+  */
+  public function getHeader(){
+    return $this->header;
+  }
+
+  /*
   *   Select Distinct values for column $nomeHeader
   *
-  **/
+  */
   public function selDistinctHead($nomeHeader){
     $ris[0] = $this->csv[0];
     foreach( $this->csv as $key => $value ){
@@ -76,11 +94,25 @@ class CsvMapper {
     }
     return $ris;
   }
-  /**
-  *  Get header
-  *  
+
+  /*
+  *  sortBy($header, $type)
+  *  $header = name of the header to sort
+  *  $type = type of the sort
+  *
   */
-  public function getHeader(){
-    return $this->header;
+  public function sortBy($header, $type="ASC"){
+    $arrayHeaders = array();
+    if(!in_array($header, $this->header)){
+      echo "Inserire header corretto";
+      return;
+    }
+    foreach($this->csv as $key => $value){
+      $arrayHeaders[$key] = $value[$header];
+    }
+    $csv = $this->csv;
+    print_r($csv);
+    array_multisort($arrayHeaders,SORT_STRING,$csv);
+    return $csv;
   }
 } 
