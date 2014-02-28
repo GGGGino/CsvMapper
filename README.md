@@ -1,8 +1,13 @@
 CsvMapper
 =========
 
-mapping csv for lazy people
+#### PHP Class for mapping Csv files in array mapping csv for lazy people
 
-UNDER CONSTRUCTION
 
-![alt text](https://31.media.tumblr.com/23ece8f99709ceb0750df7803d7785ad/tumblr_inline_mxzckhZfCw1raprkq.gif)
+You can(for now):
+
+- getBy($nomeHeader, $cerca) - Find the rows that contain $cerca in column $nomeHeader
+- getHeader() - Return the list of the header
+- selDistinctHead($nomeHeader) - Select only the different rows
+- sortBy($header, $type) - Sort the csv by the $header, in order $type("ASC" || "DESC")
+
