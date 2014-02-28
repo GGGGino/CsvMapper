@@ -50,7 +50,7 @@ class CsvMapper {
   }
 
   /*
-  *   Stamp Csv
+  *   Print Csv
   *
   */
   public function getCsv(){
@@ -58,7 +58,7 @@ class CsvMapper {
   }
 
   /*
-  *  
+  *  Trim the field when create the csv
   *
   */
   public function trimField($row){

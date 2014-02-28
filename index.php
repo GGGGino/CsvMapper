@@ -9,4 +9,5 @@ $obj = new CsvMapper("example/sample2.csv");
 #print_r($obj->selDistinctHead('cognome'));
 #var_dump($obj);
 print_r($obj->sortBy("altezza","desc"));
+print_r($obj->getBy("altezza", "1.85"));
 ?>
